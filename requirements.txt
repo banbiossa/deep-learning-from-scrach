@@ -1,3 +1,6 @@
+Complete output from command git config --get-regexp remote\..*\.url:
+
+----------------------------------------
 appnope==0.1.0
 backcall==0.1.0
 bleach==3.0.2
@@ -5,6 +8,8 @@ cycler==0.10.0
 decorator==4.3.0
 defusedxml==0.5.0
 entrypoints==0.2.3
+gitdb2==2.0.5
+GitPython==2.1.11
 ipykernel==5.1.0
 ipython==7.1.1
 ipython-genutils==0.2.0
@@ -42,6 +47,9 @@ pyzmq==17.1.2
 qtconsole==4.4.2
 Send2Trash==1.5.0
 six==1.11.0
+smmap2==2.0.5
+## !! Could not determine repository location
+src==0.1.0
 terminado==0.8.1
 testpath==0.4.2
 tornado==5.1.1

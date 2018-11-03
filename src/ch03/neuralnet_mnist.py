@@ -1,10 +1,13 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
 import numpy as np
 import pickle
-from dataset.mnist import load_mnist
-from common.functions import sigmoid, softmax
+from pathlib import Path
+from ..dataset.mnist import load_mnist
+from ..common.functions import sigmoid, softmax
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def get_data():
@@ -13,9 +16,11 @@ def get_data():
 
 
 def init_network():
-    with open("sample_weight.pkl", 'rb') as f:
-        network = pickle.load(f)
-    return network
+        pardir = Path(__file__).parent.resolve()
+        pickle_path = os.path.join(pardir, "sample_weight.pkl")
+        with open(pickle_path, 'rb') as f:
+                network = pickle.load(f)
+        return network
 
 
 def predict(network, x):
@@ -31,14 +36,15 @@ def predict(network, x):
 
     return y
 
+if __name__ == '__main__':
 
-x, t = get_data()
-network = init_network()
-accuracy_cnt = 0
-for i in range(len(x)):
-    y = predict(network, x[i])
-    p= np.argmax(y) # 最も確率の高い要素のインデックスを取得
-    if p == t[i]:
-        accuracy_cnt += 1
+        x, t = get_data()
+        network = init_network()
+        accuracy_cnt = 0
+        for i in range(len(x)):
+            y = predict(network, x[i])
+            p= np.argmax(y) # 最も確率の高い要素のインデックスを取得
+            if p == t[i]:
+                accuracy_cnt += 1
 
-print("Accuracy:" + str(float(accuracy_cnt) / len(x)))
+        logging.info("Accuracy:" + str(float(accuracy_cnt) / len(x)))

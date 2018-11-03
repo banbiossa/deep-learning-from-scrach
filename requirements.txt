@@ -1,10 +1,12 @@
 appnope==0.1.0
+autopep8==1.4.2
 backcall==0.1.0
 bleach==3.0.2
 cycler==0.10.0
 decorator==4.3.0
 defusedxml==0.5.0
 entrypoints==0.2.3
+flake8==3.6.0
 gitdb2==2.0.5
 GitPython==2.1.11
 ipykernel==5.1.0
@@ -20,6 +22,7 @@ jupyterlab-server==0.2.0
 kiwisolver==1.0.1
 MarkupSafe==1.0
 matplotlib==3.0.1
+mccabe==0.6.1
 mistune==0.8.4
 nbconvert==5.4.0
 nbformat==4.4.0
@@ -30,9 +33,12 @@ pandocfilters==1.4.2
 parso==0.3.1
 pexpect==4.6.0
 pickleshare==0.7.5
+Pillow==5.3.0
 prometheus-client==0.4.2
 prompt-toolkit==2.0.7
 ptyprocess==0.6.0
+pycodestyle==2.4.0
+pyflakes==2.0.0
 Pygments==2.2.0
 pyparsing==2.3.0
 python-dateutil==2.7.5
@@ -41,7 +47,7 @@ pyzmq==17.1.2
 Send2Trash==1.5.0
 six==1.11.0
 smmap2==2.0.5
--e git+https://github.com/banbiossa/deep-learning-from-scrach.git@d70d5ef49fb1ba78136db2cb61be64f4239e17e3#egg=src
+-e git+https://github.com/banbiossa/deep-learning-from-scrach.git@735e8179054b0c264d354c1f030cac6408a5fb5b#egg=src
 terminado==0.8.1
 testpath==0.4.2
 tornado==5.1.1

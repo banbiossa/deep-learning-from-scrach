@@ -16,6 +16,7 @@ def get_data():
 
 
 def init_network():
+        # Get parent directory
         pardir = Path(__file__).parent.resolve()
         pickle_path = os.path.join(pardir, "sample_weight.pkl")
         with open(pickle_path, 'rb') as f:

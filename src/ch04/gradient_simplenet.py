@@ -1,9 +1,11 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
 import numpy as np
-from common.functions import softmax, cross_entropy_error
-from common.gradient import numerical_gradient
+from ..common.functions import softmax, cross_entropy_error
+from ..common.gradient import numerical_gradient
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class simpleNet:
@@ -20,12 +22,14 @@ class simpleNet:
 
         return loss
 
-x = np.array([0.6, 0.9])
-t = np.array([0, 0, 1])
+if __name__ == '__main__':
 
-net = simpleNet()
+        x = np.array([0.6, 0.9])
+        t = np.array([0, 0, 1])
 
-f = lambda w: net.loss(x, t)
-dW = numerical_gradient(f, net.W)
+        net = simpleNet()
 
-print(dW)
+        f = lambda w: net.loss(x, t)
+        dW = numerical_gradient(f, net.W)
+
+        logger.info(f"dW is {dW}")

@@ -149,7 +149,7 @@ class Adam:
                         # correct bias
                         unbisa_b += \
                                 (1 - self.beta2) * \
-                                        (grads[key]*grads[key] - self.v[key]) 
+                                        (grads[key]*grads[key] - self.v[key])
                         # correct bias
                         params[key] += \
                                 self.lr * unbias_m / (np.sqrt(unbisa_b) + 1e-7)

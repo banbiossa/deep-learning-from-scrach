@@ -2,7 +2,7 @@
 import numpy as np
 from collections import OrderedDict
 from .layers import Relu, Sigmoid, Affine, SoftmaxWithLoss, Dropout
-from .layers import BatchNormalization, Convolution, Pooling
+from .layers import BatchNormalization
 from .gradient import numerical_gradient
 
 

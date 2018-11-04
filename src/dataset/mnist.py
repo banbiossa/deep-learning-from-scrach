@@ -102,10 +102,10 @@ def load_mnist(normalize=True, flatten=True, one_hot_label=False):
         Parameters
         ----------
         normalize : 画像のピクセル値を0.0~1.0に正規化する
-        one_hot_label : 
+        one_hot_label :
             one_hot_labelがTrueの場合、ラベルはone-hot配列として返す
             one-hot配列とは、たとえば[0,0,1,0,0,0,0,0,0,0]のような配列
-        flatten : 画像を一次元配列に平にするかどうか 
+        flatten : 画像を一次元配列に平にするかどうか
 
         Returns
         -------

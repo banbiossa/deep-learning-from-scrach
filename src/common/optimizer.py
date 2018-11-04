@@ -130,13 +130,13 @@ class Adam:
                         '''
                         self.m[key] = \
                                 self.beta1*self.m[key] + (1-self.beta1)*grads[key]
-                        self.v[key] = \ 
+                        self.v[key] = \
                                 self.beta2*self.v[key] + \
                                         (1-self.beta2)*(grads[key]**2)
                         '''
-                        self.m[key] += (1 - self.beta1) *\
+                        self.m[key] += (1 - self.beta1) * \
                             (grads[key] - self.m[key])
-                        self.v[key] += (1 - self.beta2) *\
+                        self.v[key] += (1 - self.beta2) * \
                             (grads[key]**2 - self.v[key])
 
                         params[key] -= lr_t * \

@@ -68,7 +68,8 @@ class Affine:
                 self.dW = np.dot(self.x.T, dout)
                 self.db = np.sum(dout, axis=0)
 
-                dx = dx.reshape(*self.original_x_shape)  # 入力データの形状に戻す（テンソル対応）
+                dx = dx.reshape(*self.original_x_shape)
+                # 入力データの形状に戻す（テンソル対応）
                 return dx
 
 
@@ -126,7 +127,8 @@ class BatchNormalization:
                 self.gamma = gamma
                 self.beta = beta
                 self.momentum = momentum
-                self.input_shape = None  # Conv層の場合は4次元、全結合層の場合は2次元
+                self.input_shape = None
+                # Conv層の場合は4次元、全結合層の場合は2次元
 
                 # テスト時に使用する平均と分散
                 self.running_mean = running_mean
@@ -284,10 +286,13 @@ class Pooling:
 
                 pool_size = self.pool_h * self.pool_w
                 dmax = np.zeros((dout.size, pool_size))
-                dmax[np.arange(self.arg_max.size), self.arg_max.flatten()] = dout.flatten()
+                dmax[np.arange(self.arg_max.size), self.arg_max.flatten()] = \
+                    dout.flatten()
                 dmax = dmax.reshape(dout.shape + (pool_size,))
 
-                dcol = dmax.reshape(dmax.shape[0] * dmax.shape[1] * dmax.shape[2], -1)
-                dx = col2im(dcol, self.x.shape, self.pool_h, self.pool_w, self.stride, self.pad)
+                dcol = dmax.reshape(dmax.shape[0] * dmax.shape[1] * dmax.shape[2],
+                                    -1)
+                dx = col2im(dcol, self.x.shape, self.pool_h, self.pool_w,
+                            self.stride, self.pad)
 
                 return dx

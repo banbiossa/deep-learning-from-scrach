@@ -1,6 +1,6 @@
 # coding: utf-8
 import numpy as np
-from .optimizer import *
+from .optimizer import SGD, Momentum, Nesterov, AdaGrad, RMSprop, Adam
 import logging
 
 logger = logging.getLogger(__name__)

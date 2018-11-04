@@ -1,6 +1,8 @@
 # coding: utf-8
 import numpy as np
-from .functions import *
+from .functions import indentiy_function, step_function, sigmoid, sigmoid_grad
+from .functions import relu, relu_grad, softmax, mean_squared_error
+from .functions import cross_entropy_error, softmax_loss
 from .util import im2col, col2im
 import logging
 

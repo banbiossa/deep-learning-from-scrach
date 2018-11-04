@@ -127,8 +127,13 @@ class Adam:
                     (1.0 - self.beta1**self.iter)
 
                 for key in params.keys():
-                        # self.m[key] = self.beta1*self.m[key] + (1-self.beta1)*grads[key]
-                        # self.v[key] = self.beta2*self.v[key] + (1-self.beta2)*(grads[key]**2)
+                        '''
+                        self.m[key] = \
+                                self.beta1*self.m[key] + (1-self.beta1)*grads[key]
+                        self.v[key] = \ 
+                                self.beta2*self.v[key] + \
+                                        (1-self.beta2)*(grads[key]**2)
+                        '''
                         self.m[key] += (1 - self.beta1) *\
                             (grads[key] - self.m[key])
                         self.v[key] += (1 - self.beta2) *\
@@ -137,6 +142,15 @@ class Adam:
                         params[key] -= lr_t * \
                             self.m[key] / (np.sqrt(self.v[key]) + 1e-7)
 
-                        # unbias_m += (1 - self.beta1) * (grads[key] - self.m[key]) # correct bias
-                        # unbisa_b += (1 - self.beta2) * (grads[key]*grads[key] - self.v[key]) # correct bias
-                        # params[key] += self.lr * unbias_m / (np.sqrt(unbisa_b) + 1e-7)
+                        '''
+                        unbias_m += \
+                                (1 - self.beta1) * \
+                                        (grads[key] - self.m[key]) 
+                        # correct bias
+                        unbisa_b += \
+                                (1 - self.beta2) * \
+                                        (grads[key]*grads[key] - self.v[key]) 
+                        # correct bias
+                        params[key] += \
+                                self.lr * unbias_m / (np.sqrt(unbisa_b) + 1e-7)
+                        '''

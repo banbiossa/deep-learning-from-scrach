@@ -1,6 +1,7 @@
 # coding: utf-8
 from ..common.functions import *
 from ..common.gradient import numerical_gradient
+import numpy as np
 import logging
 
 logger = logging.getLogger(__name__)

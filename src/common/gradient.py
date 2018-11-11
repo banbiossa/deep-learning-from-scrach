@@ -36,6 +36,21 @@ def numerical_gradient_2d(f, X):
 
 
 def numerical_gradient(f, x):
+        ''' Calculates numerical gradient on a point.
+        The point is a single vector in a multi dimentional space.
+
+        Parameters
+        ----------
+        f: function
+                takes x as input for function
+        x: np.ndarray
+                input of f. 
+                the gradient will be calculated on all elements.
+
+        Returns
+        -------
+        grad: gradient of f, shape of x. 
+        '''
         h = 1e-4  # 0.0001
         grad = np.zeros_like(x)
 
@@ -52,5 +67,31 @@ def numerical_gradient(f, x):
 
                 x[idx] = tmp_val  # 値を元に戻す
                 it.iternext()
+
+        return grad
+
+
+def numerical_gradient_on_array(f, x_array):
+        ''' Returns gradient on multiple points.
+
+        Parameters
+        ----------
+        f: functions
+                function that takes elements of x_array as input
+        x_array: np.ndarray
+                elements will be inputs of f
+
+        Returns
+        -------
+        grad: np.ndarray
+                gradinet, shape of x_array
+        '''
+        logger.info(f"Calculate gradient on {f.__name__}")
+        logger.info(f"Shape of input is {x_array.shape}")
+
+        grad = np.zeros_like(x_array)
+        for idx, x in enumerate(x_array):
+                logger.debug(f"idx: {idx}, x: {x}")
+                grad[idx] = numerical_gradient(f, x)
 
         return grad

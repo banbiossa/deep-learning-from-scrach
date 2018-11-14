@@ -73,6 +73,8 @@ def numerical_gradient(f, x):
 
 def numerical_gradient_on_array(f, x_array):
         ''' Returns gradient on multiple points.
+        ただ正直、enumerateする事で、batchでも高速に　grad が出せる気がする．
+        上の実装はゴミなような、気がする． 全ての要素のiterationを行なっているので.
 
         Parameters
         ----------

@@ -14,8 +14,7 @@ def df(x, y):
         return x / 10.0, 2.0*y
 
 
-if __name__ == '__main__':
-
+def main():
         init_pos = (-7.0, 2.0)
         params = {}
         params['x'], params['y'] = init_pos[0], init_pos[1]
@@ -68,3 +67,7 @@ if __name__ == '__main__':
                 plt.ylabel("y")
 
         plt.show()
+
+
+if __name__ == '__main__':
+        main()

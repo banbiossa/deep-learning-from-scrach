@@ -28,8 +28,11 @@ def main():
         networks = {}
         train_loss = {}
         for key, weight_type in weight_init_types.items():
-                networks[key] = MultiLayerNet(input_size=784, hidden_size_list=[100, 100, 100, 100],
-                                              output_size=10, weight_init_std=weight_type)
+                networks[key] = MultiLayerNet(
+                    input_size=784,
+                    hidden_size_list=[100, 100, 100, 100],
+                    output_size=10,
+                    weight_init_std=weight_type)
                 train_loss[key] = []
 
         # 2:訓練の開始==========
@@ -47,10 +50,10 @@ def main():
                         train_loss[key].append(loss)
 
                 if i % 100 == 0:
-                        print("===========" + "iteration:" + str(i) + "===========")
+                        logger.debug(f"-------- iteration: {i}---------")
                         for key in weight_init_types.keys():
                                 loss = networks[key].loss(x_batch, t_batch)
-                                print(key + ":" + str(loss))
+                                logger.debug(f"{key}: {loss}")
 
         # 3.グラフの描画==========
         logger.info("# 3.グラフの描画==========")

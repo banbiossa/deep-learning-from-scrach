@@ -9,10 +9,17 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def __train(weight_init_std):
-        bn_network = MultiLayerNetExtend(input_size=784, hidden_size_list=[100, 100, 100, 100, 100], output_size=10,
-                                         weight_init_std=weight_init_std, use_batchnorm=True)
-        network = MultiLayerNetExtend(input_size=784, hidden_size_list=[100, 100, 100, 100, 100], output_size=10,
+def __train(weight_init_std, learning_rate, train_size, batch_size,
+            x_train, t_train, max_epochs):
+        bn_network = MultiLayerNetExtend(
+            input_size=784,
+            hidden_size_list=[100, 100, 100, 100, 100],
+            output_size=10,
+            weight_init_std=weight_init_std,
+            use_batchnorm=True)
+        network = MultiLayerNetExtend(input_size=784,
+                                      hidden_size_list=[100, 100, 100, 100, 100],
+                                      output_size=10,
                                       weight_init_std=weight_init_std)
         optimizer = SGD(lr=learning_rate)
 
@@ -65,12 +72,19 @@ def main():
 
         for i, w in enumerate(weight_scale_list):
                 print("============== " + str(i+1) + "/16" + " ==============")
-                train_acc_list, bn_train_acc_list = __train(w)
+                train_acc_list, bn_train_acc_list = __train(w,
+                                                            learning_rate,
+                                                            train_size,
+                                                            batch_size,
+                                                            x_train,
+                                                            t_train,
+                                                            max_epochs)
 
                 plt.subplot(4, 4, i+1)
                 plt.title("W:" + str(w))
                 if i == 15:
-                        plt.plot(x, bn_train_acc_list, label='Batch Normalization', markevery=2)
+                        plt.plot(x, bn_train_acc_list,
+                                 label='Batch Normalization', markevery=2)
                         plt.plot(x, train_acc_list, linestyle="--",
                                  label='Normal(without BatchNorm)', markevery=2)
                 else:
@@ -93,4 +107,4 @@ def main():
 
 if __name__ == "__main__":
         logger.info("Kick main")
-        main():
+        main()

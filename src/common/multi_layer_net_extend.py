@@ -29,7 +29,7 @@ class MultiLayerNetExtend:
         def __init__(self, input_size, hidden_size_list, output_size,
                      activation='relu', weight_init_std='relu',
                      weight_decay_lambda=0,
-                     use_dropout=False, dropout_ration=0.5, use_batchnorm=False):
+                     use_dropout=False, dropout_ratio=0.5, use_batchnorm=False):
                 self.input_size = input_size
                 self.output_size = output_size
                 self.hidden_size_list = hidden_size_list
@@ -64,7 +64,7 @@ class MultiLayerNetExtend:
 
                         if self.use_dropout:
                                 self.layers['Dropout' + str(idx)] = \
-                                    Dropout(dropout_ration)
+                                    Dropout(dropout_ratio)
 
                 idx = self.hidden_layer_num + 1
                 self.layers['Affine' + str(idx)] = \

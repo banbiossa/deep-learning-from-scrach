@@ -54,8 +54,7 @@ class Trainer:
 
                 loss = self.network.loss(x_batch, t_batch)
                 self.train_loss_list.append(loss)
-                if self.verbose:
-                        print("train loss:" + str(loss))
+                logger.debug(f"train loss: {loss}")
 
                 if self.current_iter % self.iter_per_epoch == 0:
                         self.current_epoch += 1
@@ -79,11 +78,10 @@ class Trainer:
                         self.train_acc_list.append(train_acc)
                         self.test_acc_list.append(test_acc)
 
-                        if self.verbose:
-                                logger.info(f"==============================")
-                                logger.info(f"epoch: {self.current_epoch}")
-                                logger.info(f"train acc: {train_acc}")
-                                logger.info(f"test acc: {test_acc}")
+                        logger.debug(f"==============================")
+                        logger.debug(f"epoch: {self.current_epoch}")
+                        logger.debug(f"train acc: {train_acc}")
+                        logger.debug(f"test acc: {test_acc}")
                 self.current_iter += 1
 
         def train(self):
@@ -92,7 +90,6 @@ class Trainer:
 
                 test_acc = self.network.accuracy(self.x_test, self.t_test)
 
-                if self.verbose:
-                        logger.info(f"==============================")
-                        logger.info(f"Final Test Accuracy")
-                        logger.info(f"test acc: {test_acc}")
+                logger.debug(f"==============================")
+                logger.debug(f"Final Test Accuracy")
+                logger.debug(f"test acc: {test_acc}")

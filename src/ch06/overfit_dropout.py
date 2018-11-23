@@ -9,26 +9,27 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def main():
+def main(use_dropout=False, dropout_ratio=0.5):
         (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
 
         # 過学習を再現するために、学習データを削減
         x_train = x_train[:300]
         t_train = t_train[:300]
 
-        # Dropuoutの有無、割り合いの設定 ========================
-        use_dropout = True  # Dropoutなしのときの場合はFalseに
-        dropout_ratio = 0.2
-        # ====================================================
-
-        network = MultiLayerNetExtend(input_size=784, hidden_size_list=[100, 100, 100, 100, 100, 100],
-                                      output_size=10, use_dropout=use_dropout, dropout_ration=dropout_ratio)
+        network = MultiLayerNetExtend(
+            input_size=784,
+            hidden_size_list=[100, 100, 100, 100, 100, 100],
+            output_size=10,
+            use_dropout=use_dropout,
+            dropout_ratio=dropout_ratio)
         trainer = Trainer(network, x_train, t_train, x_test, t_test,
                           epochs=301, mini_batch_size=100,
-                          optimizer='sgd', optimizer_param={'lr': 0.01}, verbose=True)
+                          optimizer='sgd', optimizer_param={'lr': 0.01},
+                          verbose=True)
         trainer.train()
 
-        train_acc_list, test_acc_list = trainer.train_acc_list, trainer.test_acc_list
+        train_acc_list, test_acc_list = \
+            trainer.train_acc_list, trainer.test_acc_list
 
         # グラフの描画==========
         markers = {'train': 'o', 'test': 's'}
@@ -44,4 +45,4 @@ def main():
 
 if __name__ == "__main__":
         logging.info("Kick main")
-        main():
+        main()
